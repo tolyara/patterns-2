@@ -7,6 +7,8 @@ public class StateMain {
 		context.showState();
 		context.setState(new UpperCaseState());
 		context.showState();
+		context.setState(new OriginCaseState());
+		context.showState();
 	}
 	
 }
@@ -33,6 +35,15 @@ class UpperCaseState implements State {
 		System.out.println(context.name.toUpperCase());
 	}
 	
+}
+
+class OriginCaseState implements State {
+
+	@Override
+	public void doAction(Context context) {
+		System.out.println(context.name);
+	}
+
 }
 
 //Context
