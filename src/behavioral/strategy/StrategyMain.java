@@ -7,18 +7,17 @@ public class StrategyMain {
 //		System.out.println(price);
 		
 		double fullPrice = 100;		
-		Context context = new Context();
+		Shop shop = new Shop(new FullPrice());
 		
-		context.setStrategy(new FullPrice());
-		double actualPrice1 = context.getActualPrice(fullPrice);
+		double actualPrice1 = shop.getActualPrice(fullPrice);
 		System.out.println(actualPrice1);
 		
-		context.setStrategy(new HalfPrice());
-		double actualPrice2 = context.getActualPrice(fullPrice);
+		shop.setStrategy(new HalfPrice());
+		double actualPrice2 = shop.getActualPrice(fullPrice);
 		System.out.println(actualPrice2);
 		
-		context.setStrategy(new QuarterPrice());
-		double actualPrice3 = context.getActualPrice(fullPrice);
+		shop.setStrategy(new QuarterPrice());
+		double actualPrice3 = shop.getActualPrice(fullPrice);
 		System.out.println(actualPrice3);
 	}
 
@@ -57,15 +56,16 @@ class QuarterPrice implements DiscountStrategy {
 
 }
 
-class Context {
+// Context
+class Shop {
 
 	DiscountStrategy strategy;
 
-	public Context(DiscountStrategy strategy) {
+	public Shop(DiscountStrategy strategy) {
 		this.strategy = strategy;
 	}
 	
-	public Context() {
+	public Shop() {
 
 	}
 
