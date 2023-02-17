@@ -5,8 +5,11 @@ import java.util.Stack;
 public class InterpreterMain {
 
 	public static void main(String[] args) {
-//		String expression = "1 + 2 + 3 + 4";
-		String expression = "1+2+6-1";
+//		String expression = "1 + 2 + 3 + 4"; // java.lang.NumberFormatException: For input string: ""
+
+//		String expression = "1+2+3+4";
+		String expression = "1-2-3-4";
+//		String expression = "1+2+6-1";
 		Expression evaluator = new Evaluate(expression);
 		System.out.println(evaluator.interpret(evaluator));
 	}
