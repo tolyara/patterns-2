@@ -7,12 +7,18 @@ public class MediatorMain {
 
 	public static void main(String[] args) {
 		ConcreteServer server = new ConcreteServer();
-		server.addCollegue(new ConcreteCollegue(1, server));
-		server.addCollegue(new ConcreteCollegue(2, server));
+		Collegue collegue1 = new ConcreteCollegue(1, server);
+		server.addCollegue(collegue1);
+		Collegue collegue2 = new ConcreteCollegue(2, server);
+		server.addCollegue(collegue2);
+		Collegue collegue3 = new ConcreteCollegue(3, server);
+		server.addCollegue(collegue3);
 
-		Collegue collegue = new ConcreteCollegue(3, server);
-		server.addCollegue(collegue);
-		collegue.changeStatus();
+		collegue1.changeMicrophoneMuteStatus();
+		System.out.println();
+		collegue2.changeMicrophoneMuteStatus();
+		System.out.println();
+		collegue3.changeMicrophoneMuteStatus();
 	}
 
 }
@@ -20,7 +26,7 @@ public class MediatorMain {
 //mediator
 interface Server {
 
-	void requestAll(Collegue collegue);
+	void unmuteThisAndMuteOthers(Collegue collegue);
 
 }
 
@@ -33,7 +39,7 @@ class ConcreteServer implements Server {
 	}
 
 	@Override
-	public void requestAll(Collegue collegue) {
+	public void unmuteThisAndMuteOthers(Collegue collegue) {
 		collegue.setTrue();
 		for (Collegue coll : collegues) {
 			if (coll != collegue) {
@@ -50,7 +56,7 @@ interface Collegue {
 
 	void setTrue();
 
-	void changeStatus();
+	void changeMicrophoneMuteStatus();
 
 }
 
@@ -82,8 +88,8 @@ class ConcreteCollegue implements Collegue {
 	}
 
 	@Override
-	public void changeStatus() {
-		server.requestAll(this);
+	public void changeMicrophoneMuteStatus() {
+		server.unmuteThisAndMuteOthers(this);
 	}
 
 }
