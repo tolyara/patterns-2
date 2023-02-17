@@ -4,7 +4,7 @@ package structural.facade;
 public class FacadeMain {
 	
 	public static void main(String[] args) {
-		JobSearch jobSearch = new JobSearch();
+		JobSearch jobSearch = new JobSearch(new Trainee("Anatolii"));
 		jobSearch.beginJobSearch();
 	}
 
@@ -12,8 +12,12 @@ public class FacadeMain {
 
 class JobSearch {
 	
-	Trainee trainee = new Trainee("Anatolii");
-	
+	final Trainee trainee;
+
+	JobSearch(Trainee trainee) {
+		this.trainee = trainee;
+	}
+
 	void beginJobSearch() {
 		trainee.sendCV();
 		trainee.exercise(new JavaTraining());
