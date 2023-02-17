@@ -8,7 +8,7 @@ public class ProxyMain {
 		
 		System.out.println();
 		
-		Internet router = new WifiRouter();
+		Internet router = new WifiRouter(cable);
 		router.shareInternet();
 	}
 	
@@ -20,9 +20,14 @@ interface Internet {
 	
 }
 
+// proxy, adds some new functionality
 class WifiRouter implements Internet {
 	
-	Internet internetCable = new InternetCable();
+	final Internet internetCable;
+
+	WifiRouter(Internet internetCable) {
+		this.internetCable = internetCable;
+	}
 
 	void giveoutWifiOnLaptop() {
 		System.out.println("Sharing internet by Wi-Fi to Laptop...");
