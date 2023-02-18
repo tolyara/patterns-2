@@ -13,6 +13,8 @@ public class StateMain {
 	
 }
 
+// state pattern vs strategy
+// States are allowed to replace themselves (IE: to change the state of the context object to something else), while Strategies are not.
 interface State {
 	
 	void doAction(Context context);
